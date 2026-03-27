@@ -1,4 +1,3 @@
-// sydney dinardo
 import board
 import busio
 import sdcardio
@@ -240,3 +239,5 @@ setup()
 print("Setup complete. Entering main loop.")
 while True:
     loop()
+
+# sydney d
