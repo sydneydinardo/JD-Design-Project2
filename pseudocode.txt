@@ -1,1 +1,74 @@
+generate_task()
+  // 0 = Call It, 1 = Make It, 2 = Pay It
 
+  Make a task randomly with a slight bias away from the last 3 tasks.
+  One way to do this is to keep a list of 6 tasks, remove the last 3 played, 
+  and reset the list when needed.
+  Return the selected task
+end
+
+execute_task(task, max_wait)
+  If task == 0
+    return call_it(max_wait)
+  Else if task == 1
+    return make_it(max_wait)
+  Else if task == 2
+    return pay_it(max_wait)
+end
+
+call_it(max_wait)
+  Start timer
+
+  While task not completed
+    If elapsed time > max_wait
+      return false
+  End while
+
+  return true
+end
+
+make_it(required_actions, max_wait)
+  count = 0
+  Start timer
+
+  While count < required_actions
+    If correct action detected
+      count = count + 1
+
+    If elapsed time > max_wait
+      return false
+  End while
+
+  return true
+end
+
+pay_it(max_wait)
+  Start timer
+  While task not completed
+    If elapsed time > max_wait
+      return false
+  End while
+
+  return true
+end
+
+main()
+  hp = 3
+  task_completed = 0
+
+  While task_completed < MAX_SCORE
+    task = generate_task()
+    success = execute_task(task, MAX_WAIT)
+
+    If success
+      task_completed = task_completed + 1
+    Else
+      hp = hp - 1
+      If hp == 0
+        reset to start
+      End if
+    End if
+  End while
+
+  Play winning sequence
+end
